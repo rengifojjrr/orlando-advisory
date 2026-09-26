@@ -1,12 +1,13 @@
-# Orlando Advisory — sitio web
+# Kingdom Key Group — sitio web de Tahis Alvarez, Realtor®
 
-Sitio estático multipágina hecho a partir del export de Google Stitch
+Sitio estático multipágina para **Tahis Alvarez, Realtor® — Kingdom Key Group LLC**
+(licencia SL3495047, miembro de ORRA), hecho a partir del export de Google Stitch
 (`stitch_orlando_real_estate_ux_prototype.zip`). HTML + CSS + JavaScript puro:
-**sin frameworks y sin servidor**. Se ve igual que el diseño en escritorio
-(comparado píxel a píxel con las pantallas originales a 1280 px) y está adaptado
-a teléfonos y tablets (320 px en adelante).
+**sin frameworks y sin servidor**, adaptado a teléfonos y tablets (320 px en adelante).
+La maquetación es la del diseño de Stitch; la paleta se pasó a tonos cálidos (marfil,
+azul marino y dorado del logotipo) a pedido de la clienta.
 
-- **Publicado (vista para el cliente):** https://rengifojjrr.github.io/orlando-advisory/
+- **Publicado (vista para la clienta):** https://rengifojjrr.github.io/orlando-advisory/
 - **Repositorio:** https://github.com/rengifojjrr/orlando-advisory
 
 ## Páginas
@@ -30,41 +31,48 @@ Las páginas P02, P03, C02 y las zonas Winter Park, Winter Garden y Windermere n
 venían en el diseño (solo estaban enlazadas); se crearon con la misma plantilla
 que sus hermanas de Stitch y textos de ejemplo.
 
-## ⚠️ Lo primero que debes cambiar: datos de contacto
+## Datos de contacto (ya configurados)
 
-Abre `assets/js/site.js` y rellena el bloque `SITIO` (primeras líneas):
+Están en un solo lugar, el bloque `SITIO` al inicio de `assets/js/site.js`, y se
+aplican en todas las páginas (nombre, compañía, teléfono, correo y WhatsApp):
 
 ```js
 var SITIO = {
-  nombre: 'María Pérez',              // reemplaza [NOMBRE_REALTOR] y los nombres de ejemplo
-  inmobiliaria: 'Pérez Realty Group', // [NOMBRE_INMOBILIARIA]
-  telefono: '+1 (407) 555-0100',      // [TELEFONO]
-  email: 'hola@ejemplo.com',          // [EMAIL]
-  whatsapp: '14075550100',            // solo dígitos con código de país
-  biografia: '',                      // texto de "Sobre mí"
-  formEndpoint: ''                    // opcional, ver abajo
+  nombre: 'Tahis Alvarez',
+  inmobiliaria: 'Kingdom Key Group LLC',
+  telefono: '+1 (786) 177-1828',
+  email: 'alvareztahis39realtor@gmail.com',
+  whatsapp: '17861771828',              // solo dígitos, para el enlace wa.me
+  whatsappVisible: '+1 (786) 177-1828',
+  formEndpoint: ''                      // ver "Formularios"
 };
 ```
 
-Mientras un campo esté vacío, el sitio muestra el marcador del diseño
-(`[TELEFONO]`, etc.). Al rellenarlo se actualiza en **todas** las páginas y los
-teléfonos/correos/WhatsApp se vuelven enlaces que abren la llamada, el correo o el chat.
+## Pendiente de la clienta
+
+- **Foto profesional de Tahis:** todas las fotos de la asesora usan un único archivo,
+  `assets/img/asesora.webp` (hoy es un retrato provisional con la corona del logo).
+  Basta con reemplazar ese archivo (formato vertical, ~1200×1500) por su foto.
+- **Testimonios reales** (hoy están marcados como "Testimonio de ejemplo").
+- **Propiedades reales** (las fichas P01–P03 y las comunidades C01–C02 son ejemplos
+  ilustrativos) o un buscador MLS/IDX.
+- Idiomas de atención, redes sociales y dominio www.KingdomKeyGroup.com.
 
 ## Formularios
 
 Contacto, agendar, estimación, inversión y mudanza validan los datos y llevan a
-`gracias.html`, que muestra la confirmación que corresponde. Para que las
-solicitudes **lleguen a un correo**, crea un formulario gratuito en
-[Formspree](https://formspree.io) (o similar) y pega su URL en
-`SITIO.formEndpoint`. Sin eso, el cliente puede reenviar la solicitud por
-WhatsApp desde la página de confirmación.
+`gracias.html`. Como aún no hay un servicio que reciba los formularios, esa página
+le pide al visitante enviar su solicitud **por WhatsApp o por correo con un clic**
+(el mensaje ya va redactado con sus datos). Para recibirlas además automáticamente
+en el correo, crea un formulario gratuito en [Formspree](https://formspree.io) y
+pega su URL en `SITIO.formEndpoint`.
 
-## Elementos de demostración del diseño
+## Logotipo e imágenes de marca
 
-Se mantuvieron porque están en el diseño; conviene quitarlos antes del
-lanzamiento real: la franja "Vista de demostración", los botones "Simular vacío"
-(catálogo) y "Simular tipología" (confirmación), las etiquetas "Ejemplo
-ilustrativo" y el texto "Prototipo y diseño en Google Stitch" del pie.
+`assets/img/logo-corona.png` (corona para el encabezado), `logo-kingdom-key-group.png`
+(logotipo completo, pie de página), `favicon.png`, `apple-touch-icon.png`,
+`og-kingdom-key-group.jpg` (vista previa al compartir por WhatsApp/redes; su URL
+absoluta está en cada página: si cambia el dominio, actualizar `og:image`).
 
 ## Verlo en local
 
