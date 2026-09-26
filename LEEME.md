@@ -40,10 +40,10 @@ aplican en todas las páginas (nombre, compañía, teléfono, correo y WhatsApp)
 var SITIO = {
   nombre: 'Tahis Alvarez',
   inmobiliaria: 'Kingdom Key Group LLC',
-  telefono: '+1 (786) 177-1828',
+  telefono: '+1 (786) 277-1828',
   email: 'alvareztahis39realtor@gmail.com',
-  whatsapp: '17861771828',              // solo dígitos, para el enlace wa.me
-  whatsappVisible: '+1 (786) 177-1828',
+  whatsapp: '17862771828',              // solo dígitos, para el enlace wa.me
+  whatsappVisible: '+1 (786) 277-1828',
   formEndpoint: ''                      // ver "Formularios"
 };
 ```
@@ -66,8 +66,13 @@ y depósito de fotos `kkg-fotos`); la web los lee con `assets/js/kkg-datos.js`.
   *Auto Confirm User*. Ella la cambia después en el panel → *Mi cuenta*.
   (No usar el registro ni el "olvidé mi contraseña" por correo: ese proyecto
   comparte las plantillas de correo con otra aplicación.)
-- Para dar acceso a otra persona: crear su usuario igual y ejecutar en el SQL Editor
+- Para dar acceso a otra persona, **en este orden**: 1) en el SQL Editor
   `insert into public.kkg_administradores(email) values ('correo@ejemplo.com');`
+  2) después crear su usuario como arriba. (Si se crea el usuario antes, la app de la
+  escuela CEM, que comparte el proyecto, le crea un perfil de estudiante.)
+- Separación verificada: los usuarios de las otras apps del proyecto (CEM, registro
+  forestal, cotizaciones) no pueden leer borradores ni escribir en las tablas `kkg_*`
+  ni en las fotos, y la cuenta de Tahis no ve datos de esas apps.
 
 ## Foto de Tahis
 

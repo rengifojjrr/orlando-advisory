@@ -9,10 +9,10 @@
 var SITIO = {
   nombre: 'Tahis Alvarez',
   inmobiliaria: 'Kingdom Key Group LLC',
-  telefono: '+1 (786) 177-1828',
+  telefono: '+1 (786) 277-1828',
   email: 'alvareztahis39realtor@gmail.com',
-  whatsapp: '17861771828',   // solo dígitos con código de país (para el enlace wa.me)
-  whatsappVisible: '+1 (786) 177-1828',  // cómo se muestra el número de WhatsApp
+  whatsapp: '17862771828',   // solo dígitos con código de país (para el enlace wa.me)
+  whatsappVisible: '+1 (786) 277-1828',  // cómo se muestra el número de WhatsApp
   biografia: '',             // opcional: reemplaza el texto marcado con data-dato="biografia"
   // Opcional: URL de un servicio de formularios (Formspree, Getform, etc.) para
   // recibir las solicitudes también por correo. Si se deja vacío, la página de
