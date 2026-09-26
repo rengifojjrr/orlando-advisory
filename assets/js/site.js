@@ -1,21 +1,22 @@
 /* ==========================================================================
-   Orlando Advisory — lógica compartida del sitio
+   Kingdom Key Group — Tahis Alvarez, Realtor® — lógica compartida del sitio
    --------------------------------------------------------------------------
-   1) DATOS DE CONTACTO: rellena SITIO con los datos reales. Mientras un campo
-      esté vacío, la página muestra el marcador del diseño ([TELEFONO], etc.).
+   1) DATOS DE CONTACTO: se editan aquí y se actualizan en todas las páginas
+      (elementos con data-dato="..." y enlaces con data-enlace="...").
    2) Rutas: traduce los data-path del diseño de Stitch a archivos .html.
    3) Menú móvil, formularios (-> gracias.html) y enlaces de contacto.
    ========================================================================== */
 var SITIO = {
-  nombre: '',          // [NOMBRE_REALTOR]       ej. 'María Pérez'
-  inmobiliaria: '',    // [NOMBRE_INMOBILIARIA]  ej. 'Pérez Realty Group'
-  telefono: '',        // [TELEFONO]             ej. '+1 (407) 555-0100'
-  email: '',           // [EMAIL]                ej. 'hola@orlandoadvisory.com'
-  whatsapp: '',        // [WHATSAPP]  solo dígitos con código de país, ej. '14075550100'
-  biografia: '',       // [BIOGRAFIA_REAL]  texto de la sección "Sobre mí"
-  // Opcional: URL de un servicio de formularios (Formspree, Getform, etc.).
-  // Si se deja vacío, las solicitudes se muestran en gracias.html y pueden
-  // reenviarse por WhatsApp desde allí.
+  nombre: 'Tahis Alvarez',
+  inmobiliaria: 'Kingdom Key Group LLC',
+  telefono: '+1 (786) 177-1828',
+  email: 'alvareztahis39realtor@gmail.com',
+  whatsapp: '17861771828',   // solo dígitos con código de país (para el enlace wa.me)
+  whatsappVisible: '+1 (786) 177-1828',  // cómo se muestra el número de WhatsApp
+  biografia: '',             // opcional: reemplaza el texto marcado con data-dato="biografia"
+  // Opcional: URL de un servicio de formularios (Formspree, Getform, etc.) para
+  // recibir las solicitudes también por correo. Si se deja vacío, la página de
+  // confirmación ofrece enviarlas por WhatsApp o correo con un clic.
   formEndpoint: ''
 };
 
@@ -90,11 +91,20 @@ var SITIO = {
     return mensaje ? base + '?text=' + encodeURIComponent(mensaje) : base;
   }
 
+  /* mailto: con asunto y cuerpo (el correo es el segundo canal preferido). */
+  function enlaceCorreo(asunto, cuerpo) {
+    var q = [];
+    if (asunto) q.push('subject=' + encodeURIComponent(asunto));
+    if (cuerpo) q.push('body=' + encodeURIComponent(cuerpo));
+    return 'mailto:' + String(SITIO.email || '').trim() + (q.length ? '?' + q.join('&') : '');
+  }
+
   /* ---- Datos de contacto: [data-dato] y [data-enlace] ------------------- */
   function aplicarDatos(raiz) {
     raiz = raiz || document;
     raiz.querySelectorAll('[data-dato]').forEach(function (el) {
-      var v = SITIO[el.getAttribute('data-dato')];
+      var k = el.getAttribute('data-dato');
+      var v = (k === 'whatsapp' && lleno(SITIO.whatsappVisible)) ? SITIO.whatsappVisible : SITIO[k];
       if (lleno(v)) el.textContent = v;
     });
     raiz.querySelectorAll('[data-enlace]').forEach(function (el) {
@@ -223,10 +233,12 @@ var SITIO = {
   window.OA = {
     SITIO: SITIO, ruta: ruta, ir: ir, params: params, enviar: enviar,
     ultimaSolicitud: ultimaSolicitud, precargar: precargar,
-    enlaceWhatsApp: enlaceWhatsApp, aplicarDatos: aplicarDatos
+    enlaceWhatsApp: enlaceWhatsApp, enlaceCorreo: enlaceCorreo, aplicarDatos: aplicarDatos,
+    envioAutomatico: function () { return lleno(SITIO.formEndpoint); }
   };
 
   function iniciar() {
+    document.querySelectorAll('[data-anio]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
     sincronizarRutas();
     aplicarDatos();
     iniciarMenu();
