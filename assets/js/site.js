@@ -30,6 +30,8 @@ var SITIO = {
     'propiedades/demo-p01': 'propiedad-demo-p01.html',
     'propiedades/demo-p02': 'propiedad-demo-p02.html',
     'propiedades/demo-p03': 'propiedad-demo-p03.html',
+    'propiedad': 'propiedad.html',
+    'admin': 'admin.html',
     'comprar': 'comprar.html',
     'nuevas-construcciones': 'nuevas-construcciones.html',
     'nuevas-construcciones/demo-c01': 'comunidad-demo-c01.html',
@@ -67,7 +69,14 @@ var SITIO = {
     var h = path.indexOf('#'); if (h > -1) { hash = path.slice(h); path = path.slice(0, h); }
     var q = path.indexOf('?'); if (q > -1) { query = path.slice(q); path = path.slice(0, q); }
     path = path.replace(/\/+$/, '');
-    var destino = RUTAS.hasOwnProperty(path) ? RUTAS[path] : (/\.html$/.test(path) ? path : '404.html');
+    var destino;
+    if (RUTAS.hasOwnProperty(path)) destino = RUTAS[path];
+    else if (/^propiedades\/[a-z0-9-]+$/.test(path)) {
+      // Propiedades publicadas desde el panel: propiedades/<slug> -> propiedad.html?id=<slug>
+      destino = 'propiedad.html';
+      query = (query ? query + '&' : '?') + 'id=' + path.split('/')[1];
+    }
+    else destino = /\.html$/.test(path) ? path : '404.html';
     var dh = destino.indexOf('#');
     if (dh > -1) { if (!hash) hash = destino.slice(dh); destino = destino.slice(0, dh); }
     return destino + query + hash;

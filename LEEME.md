@@ -48,15 +48,38 @@ var SITIO = {
 };
 ```
 
+## Panel de Tahis (propiedades y testimonios)
+
+`admin.html` (enlace "Acceso" en el pie de página) es el panel donde Tahis publica
+sus propiedades con fotos y sus testimonios reales. Los datos viven en Supabase
+(proyecto `cotizaciones-interactivas`, tablas `kkg_propiedades`, `kkg_testimonios`
+y depósito de fotos `kkg-fotos`); la web los lee con `assets/js/kkg-datos.js`.
+
+- Mientras no haya propiedades publicadas, el catálogo y el inicio muestran los
+  ejemplos ilustrativos; con la primera propiedad publicada se reemplazan solos.
+  Cada propiedad real tiene su ficha en `propiedad.html?id=<slug>`.
+- Lo mismo con los testimonios: los de ejemplo desaparecen al publicar el primero real
+  (el panel exige marcar que el cliente autorizó publicarlo).
+- **Crear la cuenta de Tahis (una sola vez):** en supabase.com → proyecto
+  `cotizaciones-interactivas` → Authentication → Users → *Add user* → *Create new user*:
+  correo `alvareztahis39realtor@gmail.com`, una contraseña temporal y marcar
+  *Auto Confirm User*. Ella la cambia después en el panel → *Mi cuenta*.
+  (No usar el registro ni el "olvidé mi contraseña" por correo: ese proyecto
+  comparte las plantillas de correo con otra aplicación.)
+- Para dar acceso a otra persona: crear su usuario igual y ejecutar en el SQL Editor
+  `insert into public.kkg_administradores(email) values ('correo@ejemplo.com');`
+
+## Foto de Tahis
+
+`assets/img/asesora.webp` (retrato vertical 4:5), `asesora-avatar.webp` (recorte
+cuadrado para los círculos) y `asesora-original.jpg` (la foto limpia, sin el logo
+sobrepuesto que traía).
+
 ## Pendiente de la clienta
 
-- **Foto profesional de Tahis:** todas las fotos de la asesora usan un único archivo,
-  `assets/img/asesora.webp` (hoy es un retrato provisional con la corona del logo).
-  Basta con reemplazar ese archivo (formato vertical, ~1200×1500) por su foto.
-- **Testimonios reales** (hoy están marcados como "Testimonio de ejemplo").
-- **Propiedades reales** (las fichas P01–P03 y las comunidades C01–C02 son ejemplos
-  ilustrativos) o un buscador MLS/IDX.
-- Idiomas de atención, redes sociales y dominio www.KingdomKeyGroup.com.
+- **Testimonios reales** con autorización de sus clientes (se cargan desde el panel).
+- **Propiedades reales** (se cargan desde el panel).
+- Redes sociales y dominio www.KingdomKeyGroup.com.
 
 ## Formularios
 

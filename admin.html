@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Panel · Kingdom Key Group</title>
+<meta content="noindex,nofollow" name="robots"/>
+<meta content="Panel privado de Kingdom Key Group para publicar propiedades y testimonios." name="description"/>
+<meta content="#faf7f2" name="theme-color"/>
+<link href="assets/img/favicon.png" rel="icon" type="image/png"/>
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<link data-iconos="" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=account_balance,account_balance_wallet,add,add_circle_outline,add_photo_alternate,analytics,apartment,architecture,arrow_back,arrow_downward,arrow_forward,arrow_outward,arrow_upward,article,attractions,auto_stories,autorenew,badge,balance,bathtub,bed,block,bolt,bookmark,bookmark_border,business,calendar_month,calendar_today,call,celebration,chat,check,check_circle,checklist,chevron_left,chevron_right,chips,close,construction,contact_mail,contact_support,copyright,cottage,delete,delete_sweep,description,directions_bike,directions_boat,directions_car,domain,domain_add,download,download_done,east,edit,edit_document,email,error,event_available,event_seat,expand_less,expand_more,explore,explore_off,fact_check,filter_alt_off,find_in_page,flight_land,flight_takeoff,flutter_dash,forest,format_quote,forum,foundation,fullscreen,function,garage,gavel,grid_view,handshake,handyman,hearing,hiking,history,holiday_village,home,home_pin,home_work,hourglass_top,how_to_reg,hub,iframe,image,info,input,kayaking,key,label,light_mode,local_cafe,location_city,location_on,lock,lock_open,lock_open_right,lock_reset,login,logout,luggage,lunch_dining,mail,manage_accounts,manage_search,map,mark_email_read,meeting_room,menu,menu_book,message,monitoring,museum,navigation,near_me,no_accounts,north_east,open_in_new,palette,park,password,payments,person,pets,phone,photo_camera,photo_library,pin_drop,pool,price_check,progress_activity,psychology,public,query_stats,radio,rate_review,real_estate_agent,receipt_long,refresh,resize,restart_alt,restaurant,roofing,route,sailing,satellite_alt,schedule,school,search,search_off,security,sell,send,shield,shield_with_heart,shopping_basket,sports_golf,sports_tennis,square_foot,star,start,step,storefront,style,support_agent,swap_horiz,task_alt,title,translate,travel_explore,trending_up,tune,unfold_more,verified_user,videocam,view_agenda,villa,visibility,visibility_off,warning,water,wb_sunny,wb_twilight,west,wifi_off,workspace_premium&amp;display=block" rel="stylesheet"/>
+<link href="assets/css/estilos.css" rel="stylesheet"/>
+<style>
+  [hidden]{display:none!important}
+  html{scroll-padding-top:7.5rem;scroll-padding-bottom:6rem}
+  /* En los editores, la barra de Guardar llega hasta el borde inferior */
+  main:has(> [data-vista^="editor"]:not([hidden])){padding-bottom:0}
+  .icono-lleno{font-variation-settings:'FILL' 1}
+  dialog::backdrop{background:rgba(11,28,46,.55);backdrop-filter:blur(2px)}
+  input[type=number]::-webkit-inner-spin-button{opacity:.6}
+</style>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/kkg-datos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
+<script defer src="assets/js/admin.js"></script>
+<script defer src="assets/js/admin-propiedades.js"></script>
+<script defer src="assets/js/admin-fotos.js"></script>
+<script defer src="assets/js/admin-testimonios.js"></script>
+</head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen">
+
+<!-- Pantalla de carga inicial -->
+<div aria-live="polite" class="min-h-screen flex flex-col items-center justify-center gap-space-md px-margin-mobile text-center" id="pantalla-cargando">
+<img alt="" class="h-10 w-auto" height="40" src="assets/img/logo-corona.png" width="68"/>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-space-sm"><span aria-hidden="true" class="material-symbols-outlined animate-spin text-secondary">progress_activity</span>Abriendo el panel…</p>
+<noscript><p class="font-body-sm text-body-sm text-error max-w-sm">Para usar el panel necesitas activar JavaScript en tu navegador.</p></noscript>
+</div>
+
+<!-- ============================ INICIAR SESIÓN ============================ -->
+<main class="min-h-screen flex flex-col items-center justify-center px-margin-mobile py-space-xl bg-surface-container-low" hidden="" id="pantalla-login">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-[0_12px_32px_-4px_rgba(24,60,72,0.08)] p-space-lg sm:p-space-xl">
+<div class="flex flex-col items-center text-center gap-space-sm mb-space-lg">
+<img alt="" class="h-12 w-auto" height="48" src="assets/img/logo-corona.png" width="82"/>
+<p class="font-label-editorial text-label-editorial text-secondary uppercase">Kingdom Key Group · Panel</p>
+<h1 class="font-headline-md text-headline-md text-primary">Hola, Tahis</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Entra para publicar tus propiedades y los testimonios de tus clientes.</p>
+</div>
+<form autocomplete="on" class="flex flex-col gap-space-md" id="form-login" novalidate="">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-primary" for="login-email">Correo electrónico</label>
+<input autocapitalize="none" autocomplete="username" class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base" id="login-email" inputmode="email" name="email" placeholder="tu@correo.com" required="" spellcheck="false" type="email"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-primary" for="login-clave">Contraseña</label>
+<div class="relative">
+<input autocomplete="current-password" class="w-full h-12 pl-space-md pr-14 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base" id="login-clave" name="password" required="" type="password"/>
+<button aria-controls="login-clave" aria-label="Mostrar contraseña" aria-pressed="false" class="absolute right-0 top-0 h-12 w-12 inline-flex items-center justify-center rounded-lg text-on-surface-variant hover:text-primary" data-ver-clave="login-clave" type="button"><span aria-hidden="true" class="material-symbols-outlined">visibility</span></button>
+</div>
+</div>
+<p class="rounded-lg bg-error-container text-on-error-container font-body-sm text-body-sm px-space-md py-space-sm flex items-start gap-space-sm" hidden="" id="login-error" role="alert"></p>
+<button class="inline-flex items-center justify-center gap-space-sm w-full h-12 px-space-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md rounded-lg shadow-[0_4px_20px_-2px_rgba(24,60,72,0.1)] transition-all disabled:opacity-60 disabled:cursor-wait" id="login-boton" type="submit"><span>Entrar</span><span aria-hidden="true" class="material-symbols-outlined text-xl">arrow_forward</span></button>
+</form>
+<p class="mt-space-lg font-body-sm text-body-sm text-on-surface-variant text-center">¿Olvidaste tu contraseña? Pide a quien administra tu sitio web que la restablezca.</p>
+</div>
+<a class="mt-space-lg inline-flex items-center gap-space-xs min-h-[44px] font-label-md text-label-md text-secondary hover:text-primary" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-lg">arrow_back</span>Volver al sitio</a>
+</main>
+
+<!-- ============================ PANEL ============================ -->
+<div class="min-h-screen flex flex-col" hidden="" id="app">
+<a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[90] focus:bg-surface-container-lowest focus:text-primary focus:px-space-md focus:py-space-sm focus:rounded-lg focus:shadow-md" href="#contenido">Saltar al contenido</a>
+<header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+<div class="max-w-6xl mx-auto h-16 px-margin-mobile md:px-space-lg flex items-center justify-between gap-space-sm">
+<a aria-label="Kingdom Key Group · Panel — propiedades" class="flex items-center gap-space-sm min-w-0" href="#propiedades">
+<img alt="" class="h-8 max-[359px]:h-6 w-auto shrink-0" height="32" src="assets/img/logo-corona.png" width="55"/>
+<span class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[1.0625rem] leading-tight sm:text-headline-sm text-primary tracking-tight whitespace-nowrap truncate max-[359px]:text-[0.875rem]">Kingdom Key Group</span>
+<span class="font-label-editorial text-[0.6875rem] leading-[0.875rem] text-secondary uppercase tracking-[0.12em]">Panel</span>
+</span>
+</a>
+<div class="flex items-center gap-space-xs shrink-0">
+<span class="hidden lg:inline max-w-[15rem] truncate font-body-sm text-body-sm text-on-surface-variant" data-usuario-email="" title=""></span>
+<a aria-label="Ver sitio (se abre en otra pestaña)" class="inline-flex items-center justify-center gap-space-xs h-11 min-w-[44px] px-space-sm md:px-space-md rounded-lg text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors" href="index.html" rel="noopener" target="_blank"><span aria-hidden="true" class="material-symbols-outlined text-xl">open_in_new</span><span class="hidden md:inline">Ver sitio</span></a>
+<button aria-label="Cerrar sesión" class="inline-flex items-center justify-center gap-space-xs h-11 min-w-[44px] px-space-sm md:px-space-md rounded-lg text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors" data-accion="salir" type="button"><span aria-hidden="true" class="material-symbols-outlined text-xl">logout</span><span class="hidden md:inline">Cerrar sesión</span></button>
+</div>
+</div>
+<nav aria-label="Secciones del panel" class="max-w-6xl mx-auto px-margin-mobile md:px-space-lg flex gap-space-md sm:gap-space-lg overflow-x-auto" id="pestanas">
+<a class="shrink-0 inline-flex items-center gap-space-xs h-11 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-primary aria-[current=page]:border-secondary aria-[current=page]:text-primary transition-colors" data-pestana="propiedades" href="#propiedades"><span aria-hidden="true" class="material-symbols-outlined text-lg max-[389px]:hidden">home_work</span>Propiedades</a>
+<a class="shrink-0 inline-flex items-center gap-space-xs h-11 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-primary aria-[current=page]:border-secondary aria-[current=page]:text-primary transition-colors" data-pestana="testimonios" href="#testimonios"><span aria-hidden="true" class="material-symbols-outlined text-lg max-[389px]:hidden">rate_review</span>Testimonios</a>
+<a class="shrink-0 inline-flex items-center gap-space-xs h-11 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-primary aria-[current=page]:border-secondary aria-[current=page]:text-primary transition-colors" data-pestana="cuenta" href="#cuenta"><span aria-hidden="true" class="material-symbols-outlined text-lg max-[389px]:hidden">manage_accounts</span>Mi cuenta</a>
+</nav>
+</header>
+
+<!-- Avisos generales -->
+<div class="bg-secondary-container text-on-secondary-container" hidden="" id="aviso-sin-conexion" role="status">
+<p class="max-w-6xl mx-auto px-margin-mobile md:px-space-lg py-space-sm font-body-sm text-body-sm flex items-start gap-space-sm"><span aria-hidden="true" class="material-symbols-outlined text-xl shrink-0">wifi_off</span><span>Estás sin conexión a internet. Puedes seguir escribiendo, pero no se guardará nada hasta que vuelvas a conectarte.</span></p>
+</div>
+<div class="bg-error-container text-on-error-container" hidden="" id="aviso-error" role="alert">
+<div class="max-w-6xl mx-auto px-margin-mobile md:px-space-lg py-space-sm flex flex-wrap items-center gap-x-space-md gap-y-space-xs font-body-sm text-body-sm">
+<span aria-hidden="true" class="material-symbols-outlined text-xl shrink-0">error</span>
+<span class="flex-1 min-w-[12rem]" data-aviso-texto=""></span>
+<button class="inline-flex items-center gap-space-xs h-10 px-space-md rounded-lg bg-surface-container-lowest/70 hover:bg-surface-container-lowest font-label-md text-label-md text-primary" data-accion="reintentar" type="button"><span aria-hidden="true" class="material-symbols-outlined text-lg">refresh</span>Reintentar</button>
+</div>
+</div>
+
+<main class="flex-1 w-full max-w-6xl mx-auto px-margin-mobile md:px-space-lg pt-space-lg pb-space-xl outline-none" id="contenido" tabindex="-1">
+
+<!-- ======================= LISTA DE PROPIEDADES ======================= -->
+<section aria-labelledby="titulo-propiedades" data-vista="propiedades" hidden="">
+<div class="flex flex-wrap items-end justify-between gap-space-md mb-space-md">
+<div class="min-w-0">
+<h1 class="font-headline-md text-headline-md text-primary" id="titulo-propiedades">Propiedades</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-prop-conteo="">Cargando…</p>
+</div>
+<a class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg bg-secondary text-on-secondary hover:bg-on-secondary-container font-label-md text-label-md rounded-lg shadow-[0_4px_20px_-2px_rgba(24,60,72,0.1)] transition-all max-[389px]:w-full" href="#propiedad/nueva"><span aria-hidden="true" class="material-symbols-outlined text-xl">add</span>Nueva propiedad</a>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-center gap-space-sm mb-space-lg">
+<div aria-label="Filtrar por estado" class="flex gap-space-xs overflow-x-auto -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0 pb-1" data-prop-filtros="" role="group"></div>
+<div class="relative lg:ml-auto lg:w-80">
+<label class="sr-only" for="prop-buscar">Buscar propiedades</label>
+<span aria-hidden="true" class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">search</span>
+<input autocomplete="off" class="w-full h-12 pl-11 pr-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] transition-all max-md:text-base" id="prop-buscar" placeholder="Buscar por título, ciudad o MLS" type="search"/>
+</div>
+</div>
+<div aria-busy="true" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-md" data-prop-lista=""></div>
+<p class="py-space-xl text-center font-body-md text-body-md text-on-surface-variant" data-prop-sin-resultados="" hidden="">No hay propiedades que coincidan con tu búsqueda o filtro.</p>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg md:p-space-xl max-w-2xl mx-auto text-center flex flex-col items-center gap-space-md" data-prop-vacio="" hidden="">
+<span aria-hidden="true" class="material-symbols-outlined text-5xl text-secondary">home_work</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Todavía no hay propiedades</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Mientras no publiques ninguna, la web sigue mostrando los ejemplos ilustrativos. Así publicas la primera:</p>
+<ol class="text-left flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface w-full max-w-md">
+<li class="flex gap-space-sm"><span class="shrink-0 w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md inline-flex items-center justify-center">1</span><span>Toca <strong>Nueva propiedad</strong> y escribe el título, el precio y la ciudad.</span></li>
+<li class="flex gap-space-sm"><span class="shrink-0 w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md inline-flex items-center justify-center">2</span><span>Sube las fotos desde tu teléfono o computadora. La primera será la portada.</span></li>
+<li class="flex gap-space-sm"><span class="shrink-0 w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md inline-flex items-center justify-center">3</span><span>Toca <strong>Guardar y publicar</strong>. En unos segundos aparecerá en la web con el estado “En venta”.</span></li>
+</ol>
+<a class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md rounded-lg transition-all" href="#propiedad/nueva"><span aria-hidden="true" class="material-symbols-outlined text-xl">add</span>Crear mi primera propiedad</a>
+</div>
+</section>
+
+<!-- ======================= EDITOR DE PROPIEDAD ======================= -->
+<section aria-labelledby="titulo-editor-prop" data-vista="editor-propiedad" hidden="">
+<form class="flex flex-col gap-space-lg max-w-4xl mx-auto" id="form-propiedad" novalidate="">
+<div class="flex items-start gap-space-sm">
+<a aria-label="Volver a la lista de propiedades" class="shrink-0 -ml-space-sm inline-flex items-center justify-center w-11 h-11 rounded-lg text-primary hover:bg-surface-container-high transition-colors" href="#propiedades"><span aria-hidden="true" class="material-symbols-outlined">arrow_back</span></a>
+<div class="min-w-0 flex-1">
+<h1 class="font-headline-md text-headline-md text-primary max-sm:text-[1.5rem] max-sm:leading-8" id="titulo-editor-prop">Nueva propiedad</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-editor-prop-nota="">Completa los datos y toca “Guardar”. Los campos con <span aria-hidden="true" class="text-error">*</span><span class="sr-only">asterisco</span> son obligatorios.</p>
+</div>
+</div>
+<div class="rounded-lg bg-error-container text-on-error-container font-body-sm text-body-sm px-space-md py-space-sm flex items-start gap-space-sm" data-editor-prop-resumen="" hidden="" role="alert" tabindex="-1"></div>
+
+<section aria-labelledby="h-basico" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-basico">Lo básico</h2>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-titulo">Título <span aria-hidden="true" class="text-error">*</span></label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-titulo" name="titulo" type="text" maxlength="140" required="" autocomplete="off" placeholder="Ej. Casa familiar con piscina en Apopka"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="p-titulo-ayuda">Aparece como nombre de la propiedad en la web.</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-titulo" hidden="" id="p-titulo-error"></p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-tipo">Tipo de propiedad <span aria-hidden="true" class="text-error">*</span></label>
+<div class="relative">
+<select class="w-full h-12 pl-space-md pr-10 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] appearance-none cursor-pointer transition-all max-md:text-base" id="p-tipo" name="tipo" required=""></select>
+<span aria-hidden="true" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-tipo" hidden="" id="p-tipo-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-estado">Estado <span aria-hidden="true" class="text-error">*</span></label>
+<div class="relative">
+<select class="w-full h-12 pl-space-md pr-10 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] appearance-none cursor-pointer transition-all max-md:text-base" id="p-estado" name="estado" required="" aria-describedby="p-estado-ayuda"></select>
+<span aria-hidden="true" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="p-estado-ayuda">Borrador: solo la ves tú. En venta, Bajo contrato y Vendida se ven en la web.</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-estado" hidden="" id="p-estado-error"></p>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md sm:items-start">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-precio">Precio (USD)</label>
+<div class="relative">
+<span aria-hidden="true" class="absolute left-space-md top-1/2 -translate-y-1/2 font-label-lg text-label-lg text-on-surface-variant pointer-events-none">$</span>
+<input autocomplete="off" class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base pl-8" id="p-precio" inputmode="decimal" name="precio" placeholder="1,240,000" type="text" aria-describedby="p-precio-ayuda"/>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="p-precio-ayuda">Puedes escribirlo con comas. Si lo dejas vacío, la web muestra “Consultar precio”.</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-precio" hidden="" id="p-precio-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs sm:pt-7">
+<label class="flex items-start gap-space-sm min-h-[48px] p-space-sm rounded-lg bg-surface-container-low cursor-pointer has-[:focus-visible]:shadow-[0_0_0_2px_#7b5829]" for="p-destacada">
+<input class="mt-0.5 w-5 h-5 shrink-0 accent-[#7b5829] cursor-pointer" id="p-destacada" name="destacada" type="checkbox"/>
+<span class="flex flex-col"><span class="font-label-md text-label-md text-primary">Destacada</span><span class="font-body-sm text-body-sm text-on-surface-variant">Mostrar primero en la web</span></span>
+</label>
+</div>
+</div>
+</section>
+<section aria-labelledby="h-ubicacion" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-ubicacion">Ubicación</h2>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-direccion">Dirección <span class="font-body-sm text-body-sm text-on-surface-variant">(opcional)</span></label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-direccion" name="direccion" type="text" maxlength="200" autocomplete="off" placeholder="Ej. 1234 Lake Street" aria-describedby="p-direccion-ayuda"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="p-direccion-ayuda">Se muestra en la web si la escribes. Déjala vacía si prefieres no publicarla.</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-direccion" hidden="" id="p-direccion-error"></p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-ciudad">Ciudad</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-ciudad" name="ciudad" type="text" maxlength="80" autocomplete="off" placeholder="Ej. Apopka"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-ciudad" hidden="" id="p-ciudad-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-zona">Zona</label>
+<div class="relative">
+<select class="w-full h-12 pl-space-md pr-10 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] appearance-none cursor-pointer transition-all max-md:text-base" id="p-zona" name="zona" aria-describedby="p-zona-ayuda"></select>
+<span aria-hidden="true" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="p-zona-ayuda">Sirve para los filtros de la web.</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-zona" hidden="" id="p-zona-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-condado">Condado</label>
+<div class="relative">
+<select class="w-full h-12 pl-space-md pr-10 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] appearance-none cursor-pointer transition-all max-md:text-base" id="p-condado" name="condado" ><option value="">Sin indicar</option><option value="Orange">Orange</option><option value="Seminole">Seminole</option><option value="Lake">Lake</option><option value="Osceola">Osceola</option><option value="Polk">Polk</option><option value="Volusia">Volusia</option><option value="Otro">Otro</option></select>
+<span aria-hidden="true" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-condado" hidden="" id="p-condado-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-cp">Código postal</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-cp" name="codigo_postal" type="text" maxlength="10" inputmode="numeric" autocomplete="off" placeholder="32779"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-cp" hidden="" id="p-cp-error"></p>
+</div>
+</div>
+</section>
+<section aria-labelledby="h-detalles" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-detalles">Detalles</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant -mt-space-sm">Llena solo lo que aplique. Lo que dejes vacío no se muestra en la web.</p>
+<div class="grid grid-cols-2 max-[359px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-space-md gap-y-space-md">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-habitaciones">Habitaciones</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-habitaciones" name="habitaciones" type="number" min="0" max="99" step="1" inputmode="numeric"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-habitaciones" hidden="" id="p-habitaciones-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-banos">Baños</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-banos" name="banos" type="number" min="0" max="99" step="0.5" inputmode="decimal"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-banos" hidden="" id="p-banos-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-superficie">Superficie (sqft)</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-superficie" name="superficie_sqft" type="text" inputmode="numeric" autocomplete="off" placeholder="2,450"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-superficie" hidden="" id="p-superficie-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-terreno">Terreno (sqft)</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-terreno" name="terreno_sqft" type="text" inputmode="numeric" autocomplete="off" placeholder="8,700"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-terreno" hidden="" id="p-terreno-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-anio">Año de construcción</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-anio" name="anio_construccion" type="number" min="1800" max="2100" step="1" placeholder="2019" inputmode="numeric"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-anio" hidden="" id="p-anio-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-estacionamientos">Estacionamientos</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-estacionamientos" name="estacionamientos" type="number" min="0" max="999" step="1" inputmode="numeric"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-estacionamientos" hidden="" id="p-estacionamientos-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-hoa">HOA mensual</label>
+<div class="relative">
+<span aria-hidden="true" class="absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">$</span>
+<input autocomplete="off" class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base pl-8" id="p-hoa" inputmode="decimal" name="hoa_mensual" placeholder="150" type="text"/>
+</div>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-hoa" hidden="" id="p-hoa-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-cdd">CDD anual</label>
+<div class="relative">
+<span aria-hidden="true" class="absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">$</span>
+<input autocomplete="off" class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base pl-8" id="p-cdd" inputmode="decimal" name="cdd_anual" placeholder="1,200" type="text"/>
+</div>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-cdd" hidden="" id="p-cdd-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-impuestos">Impuestos anuales</label>
+<div class="relative">
+<span aria-hidden="true" class="absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">$</span>
+<input autocomplete="off" class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base pl-8" id="p-impuestos" inputmode="decimal" name="impuestos_anuales" placeholder="6,800" type="text"/>
+</div>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-impuestos" hidden="" id="p-impuestos-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-mls">MLS #</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-mls" name="mls" type="text" maxlength="40" autocomplete="off" placeholder="O6123456"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-mls" hidden="" id="p-mls-error"></p>
+</div>
+</div>
+</section>
+<section aria-labelledby="h-descripcion" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<div class="flex items-baseline justify-between gap-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-descripcion"><label for="p-descripcion">Descripción</label></h2>
+<span aria-live="polite" class="font-body-sm text-body-sm text-on-surface-variant tabular-nums" data-contador-de="p-descripcion">0 / 8000</span>
+</div>
+<textarea class="w-full p-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base min-h-[12rem]" id="p-descripcion" maxlength="8000" name="descripcion" placeholder="Cuenta lo que hace especial a esta propiedad: distribución, remodelaciones, la comunidad, escuelas cercanas… Puedes usar párrafos." rows="9"></textarea>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-descripcion" hidden="" id="p-descripcion-error"></p>
+</section>
+<section aria-labelledby="h-caract" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<div class="flex items-baseline justify-between gap-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-caract">Características</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant tabular-nums" data-caract-conteo="">0 / 40</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant -mt-space-sm">Toca las que tenga la propiedad. Puedes agregar otras al final.</p>
+<div aria-label="Características comunes" class="flex flex-wrap gap-space-xs" data-caract-comunes="" role="group"></div>
+<div aria-label="Características agregadas por ti" class="flex flex-wrap gap-space-xs" data-caract-propias="" role="group"></div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-primary" for="p-caract-nueva">Agregar otra característica</label>
+<div class="flex gap-space-sm">
+<input autocomplete="off" class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base flex-1 min-w-0" id="p-caract-nueva" maxlength="60" placeholder="Ej. Cocina de verano" type="text"/>
+<button class="shrink-0 inline-flex items-center justify-center gap-space-xs h-12 px-space-md rounded-lg border border-outline-variant text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors" data-accion="agregar-caract" type="button"><span aria-hidden="true" class="material-symbols-outlined text-xl">add</span>Agregar</button>
+</div>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-caract-nueva" hidden="" id="p-caract-nueva-error"></p>
+</div>
+</section>
+<section aria-labelledby="h-nueva" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-nueva">Nueva construcción</h2>
+<label class="flex items-center justify-between gap-space-md min-h-[48px] cursor-pointer" for="p-nueva">
+<span class="flex flex-col"><span class="font-label-md text-label-md text-primary">Es una casa nueva de constructora</span><span class="font-body-sm text-body-sm text-on-surface-variant">Actívalo para indicar la constructora y la fecha de entrega.</span></span>
+<span class="relative shrink-0">
+<input class="peer sr-only" id="p-nueva" name="nueva_construccion" role="switch" type="checkbox"/>
+<span aria-hidden="true" class="block w-12 h-7 rounded-full bg-surface-container-highest peer-checked:bg-secondary transition-colors peer-focus-visible:shadow-[0_0_0_2px_#faf7f2,0_0_0_4px_#7b5829]"></span>
+<span aria-hidden="true" class="absolute top-1 left-1 w-5 h-5 rounded-full bg-surface-container-lowest shadow transition-transform peer-checked:translate-x-5"></span>
+</span>
+</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md" data-nueva-campos="" hidden="">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-constructora">Constructora</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-constructora" name="constructora" type="text" maxlength="120" autocomplete="off" placeholder="Ej. Lennar, Pulte, Taylor Morrison"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-constructora" hidden="" id="p-constructora-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-entrega">Entrega estimada</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-entrega" name="entrega_estimada" type="text" maxlength="60" autocomplete="off" placeholder="Ej. Primavera 2027 / Lista para mudarse"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-entrega" hidden="" id="p-entrega-error"></p>
+</div>
+</div>
+</section>
+<section aria-labelledby="h-fotos" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md" id="seccion-fotos">
+<div class="flex items-baseline justify-between gap-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-fotos">Fotos</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant tabular-nums" data-fotos-conteo="">0 / 40</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant -mt-space-sm">La primera foto es la portada. Se ajustan solas para que carguen rápido en la web (hasta 1600 px).</p>
+<input accept="image/*" class="peer sr-only" id="p-fotos" multiple="" type="file"/>
+<label class="flex flex-col items-center justify-center gap-space-xs min-h-[8.5rem] rounded-xl border-2 border-dashed border-outline-variant bg-surface-container-low hover:bg-surface-container cursor-pointer text-center p-space-md transition-colors peer-focus-visible:shadow-[0_0_0_2px_#7b5829] data-[arrastrando=true]:border-secondary data-[arrastrando=true]:bg-secondary-fixed/40" data-fotos-zona="" for="p-fotos">
+<span aria-hidden="true" class="material-symbols-outlined text-4xl text-secondary">add_photo_alternate</span>
+<span class="font-label-lg text-label-lg text-primary">Agregar fotos</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Toca para elegirlas de tu galería<span class="hidden lg:inline"> o arrástralas aquí</span>. Puedes elegir varias a la vez.</span>
+</label>
+<div aria-live="polite" class="flex flex-col gap-space-xs empty:hidden" data-fotos-avisos=""></div>
+<p aria-live="polite" class="sr-only" data-fotos-anuncio=""></p>
+<ul aria-label="Fotos de la propiedad" class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm" data-fotos-lista=""></ul>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-fotos" hidden="" id="p-fotos-error"></p>
+</section>
+<section aria-labelledby="h-video" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-video">Video y recorrido virtual</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-video">Video (YouTube o Vimeo)</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-video" name="video_url" type="url" autocomplete="off" inputmode="url" placeholder="https://www.youtube.com/watch?v=…" spellcheck="false"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="p-video-ayuda">Copia el enlace completo; debe empezar por https://</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-video" hidden="" id="p-video-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="p-tour">Recorrido virtual 3D</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="p-tour" name="tour_virtual_url" type="url" autocomplete="off" inputmode="url" placeholder="https://my.matterport.com/show/?m=…" spellcheck="false"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="p-tour-ayuda">Matterport u otro servicio. Debe empezar por https://</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="p-tour" hidden="" id="p-tour-error"></p>
+</div>
+</div>
+</section>
+<div class="sticky bottom-0 z-30 -mx-margin-mobile md:-mx-space-lg px-margin-mobile md:px-space-lg pt-space-sm pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-surface/95 backdrop-blur-md border-t border-outline-variant/60">
+<div class="flex items-center gap-space-sm">
+<p aria-live="polite" class="hidden md:block flex-1 min-w-0 font-body-sm text-body-sm text-on-surface-variant" data-editor-prop-cambios=""></p>
+<button aria-label="Cancelar" class="shrink-0 inline-flex items-center justify-center h-12 max-sm:w-12 sm:px-space-lg rounded-lg border border-outline-variant text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors" data-accion="cancelar-propiedad" type="button"><span aria-hidden="true" class="material-symbols-outlined sm:hidden">close</span><span class="max-sm:hidden">Cancelar</span></button>
+<button class="flex-1 md:flex-none inline-flex items-center justify-center gap-space-xs h-12 px-space-md sm:px-space-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md rounded-lg shadow-[0_4px_20px_-2px_rgba(24,60,72,0.1)] transition-all disabled:opacity-60 disabled:cursor-wait" data-guardar="guardar" type="submit"><span aria-hidden="true" class="material-symbols-outlined text-xl max-[389px]:hidden">check</span>Guardar</button>
+<button class="flex-1 md:flex-none inline-flex items-center justify-center gap-space-xs h-12 px-space-sm sm:px-space-lg bg-secondary text-on-secondary hover:bg-on-secondary-container font-label-md text-label-md leading-tight text-center rounded-lg shadow-[0_4px_20px_-2px_rgba(24,60,72,0.1)] transition-all disabled:opacity-60 disabled:cursor-wait" data-guardar="publicar" hidden="" type="submit">Guardar y publicar</button>
+</div>
+</div>
+</form>
+</section>
+
+<!-- ======================= TESTIMONIOS ======================= -->
+<section aria-labelledby="titulo-testimonios" data-vista="testimonios" hidden="">
+<div class="flex flex-wrap items-end justify-between gap-space-md mb-space-md">
+<div class="min-w-0">
+<h1 class="font-headline-md text-headline-md text-primary" id="titulo-testimonios">Testimonios</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-testi-conteo="">Cargando…</p>
+</div>
+<a class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg bg-secondary text-on-secondary hover:bg-on-secondary-container font-label-md text-label-md rounded-lg shadow-[0_4px_20px_-2px_rgba(24,60,72,0.1)] transition-all max-[389px]:w-full" href="#testimonio/nuevo"><span aria-hidden="true" class="material-symbols-outlined text-xl">add</span>Nuevo testimonio</a>
+</div>
+<div class="mb-space-lg rounded-xl bg-secondary-fixed/50 text-on-secondary-fixed px-space-md py-space-md flex items-start gap-space-sm font-body-sm text-body-sm">
+<span aria-hidden="true" class="material-symbols-outlined text-secondary shrink-0">info</span>
+<p>Publica solo reseñas reales con permiso del cliente. En cuanto publiques la primera, la web deja de mostrar los ejemplos.</p>
+</div>
+<div aria-busy="true" class="grid grid-cols-1 md:grid-cols-2 gap-space-md" data-testi-lista=""></div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg md:p-space-xl max-w-2xl mx-auto text-center flex flex-col items-center gap-space-md" data-testi-vacio="" hidden="">
+<span aria-hidden="true" class="material-symbols-outlined text-5xl text-secondary">format_quote</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Todavía no hay testimonios</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Cuando un cliente te dé una reseña y su permiso para publicarla, agrégala aquí. Mientras tanto, la web muestra testimonios de ejemplo marcados como tales.</p>
+<a class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md rounded-lg transition-all" href="#testimonio/nuevo"><span aria-hidden="true" class="material-symbols-outlined text-xl">add</span>Agregar un testimonio</a>
+</div>
+</section>
+
+<!-- ======================= EDITOR DE TESTIMONIO ======================= -->
+<section aria-labelledby="titulo-editor-testi" data-vista="editor-testimonio" hidden="">
+<form class="flex flex-col gap-space-lg max-w-3xl mx-auto" id="form-testimonio" novalidate="">
+<div class="flex items-start gap-space-sm">
+<a aria-label="Volver a la lista de testimonios" class="shrink-0 -ml-space-sm inline-flex items-center justify-center w-11 h-11 rounded-lg text-primary hover:bg-surface-container-high transition-colors" href="#testimonios"><span aria-hidden="true" class="material-symbols-outlined">arrow_back</span></a>
+<div class="min-w-0 flex-1">
+<h1 class="font-headline-md text-headline-md text-primary max-sm:text-[1.5rem] max-sm:leading-8" id="titulo-editor-testi">Nuevo testimonio</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Escribe la reseña tal como te la dio tu cliente.</p>
+</div>
+</div>
+<div class="rounded-lg bg-error-container text-on-error-container font-body-sm text-body-sm px-space-md py-space-sm flex items-start gap-space-sm" data-editor-testi-resumen="" hidden="" role="alert" tabindex="-1"></div>
+<section aria-labelledby="h-cliente" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-cliente">Cliente</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="t-nombre">Nombre <span aria-hidden="true" class="text-error">*</span></label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="t-nombre" name="nombre" type="text" maxlength="80" required="" autocomplete="off" placeholder="Ej. Familia Rodríguez o María G."/>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="t-nombre-ayuda">Puedes usar solo el nombre y la inicial del apellido.</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="t-nombre" hidden="" id="t-nombre-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="t-detalle">Detalle</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="t-detalle" name="detalle" type="text" maxlength="120" autocomplete="off" placeholder="Ej. Compró su primera vivienda"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="t-detalle" hidden="" id="t-detalle-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="t-zona">Zona</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="t-zona" name="zona" type="text" maxlength="80" autocomplete="off" placeholder="Ej. Apopka"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="t-zona" hidden="" id="t-zona-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="t-categoria">Categoría</label>
+<div class="relative">
+<select class="w-full h-12 pl-space-md pr-10 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] appearance-none cursor-pointer transition-all max-md:text-base" id="t-categoria" name="categoria" ></select>
+<span aria-hidden="true" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-error" data-error-de="t-categoria" hidden="" id="t-categoria-error"></p>
+</div>
+</div>
+</section>
+<section aria-labelledby="h-resena" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<div class="flex items-baseline justify-between gap-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-resena"><label for="t-texto">Reseña <span aria-hidden="true" class="text-error">*</span></label></h2>
+<span aria-live="polite" class="font-body-sm text-body-sm text-on-surface-variant tabular-nums" data-contador-de="t-texto">0 / 1500</span>
+</div>
+<textarea class="w-full p-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base min-h-[10rem]" id="t-texto" maxlength="1500" name="texto" placeholder="Lo que tu cliente contó de su experiencia contigo…" required="" rows="7"></textarea>
+<p class="font-body-sm text-body-sm text-error" data-error-de="t-texto" hidden="" id="t-texto-error"></p>
+<fieldset class="flex flex-col gap-space-xs">
+<legend class="font-label-md text-label-md text-primary mb-space-xs">Calificación <span class="font-body-sm text-body-sm text-on-surface-variant">(opcional)</span></legend>
+<div class="flex flex-wrap gap-space-xs" data-calificacion=""></div>
+</fieldset>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="t-fecha">Fecha de la reseña</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="t-fecha" name="fecha" type="date" max="2100-12-31" min="2000-01-01"/>
+<p class="font-body-sm text-body-sm text-error" data-error-de="t-fecha" hidden="" id="t-fecha-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="t-orden">Orden</label>
+<input class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base " id="t-orden" name="orden" type="number" inputmode="numeric" step="1" min="-9999" max="9999" placeholder="0"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="t-orden-ayuda">Los números más bajos aparecen primero.</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="t-orden" hidden="" id="t-orden-error"></p>
+</div>
+</div>
+</section>
+<section aria-labelledby="h-publicacion" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-publicacion">Permiso y publicación</h2>
+<label class="flex items-start gap-space-sm min-h-[48px] p-space-sm rounded-lg bg-surface-container-low cursor-pointer has-[:focus-visible]:shadow-[0_0_0_2px_#7b5829]" for="t-autorizado">
+<input class="mt-0.5 w-5 h-5 shrink-0 accent-[#7b5829] cursor-pointer" id="t-autorizado" name="autorizado" type="checkbox"/>
+<span class="flex flex-col"><span class="font-label-md text-label-md text-primary">El cliente autorizó publicar este testimonio</span><span class="font-body-sm text-body-sm text-on-surface-variant">Guarda su permiso por escrito (un mensaje o correo basta).</span></span>
+</label>
+<label class="flex items-center justify-between gap-space-md min-h-[48px] cursor-pointer has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60" for="t-publicado">
+<span class="flex flex-col"><span class="font-label-md text-label-md text-primary">Publicado en la web</span><span class="font-body-sm text-body-sm text-on-surface-variant" data-publicado-ayuda="">Primero marca la autorización del cliente.</span></span>
+<span class="relative shrink-0">
+<input class="peer sr-only" disabled="" id="t-publicado" name="publicado" role="switch" type="checkbox"/>
+<span aria-hidden="true" class="block w-12 h-7 rounded-full bg-surface-container-highest peer-checked:bg-secondary transition-colors peer-focus-visible:shadow-[0_0_0_2px_#faf7f2,0_0_0_4px_#7b5829]"></span>
+<span aria-hidden="true" class="absolute top-1 left-1 w-5 h-5 rounded-full bg-surface-container-lowest shadow transition-transform peer-checked:translate-x-5"></span>
+</span>
+</label>
+</section>
+<div class="sticky bottom-0 z-30 -mx-margin-mobile md:-mx-space-lg px-margin-mobile md:px-space-lg pt-space-sm pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-surface/95 backdrop-blur-md border-t border-outline-variant/60">
+<div class="flex items-center gap-space-sm">
+<p aria-live="polite" class="hidden md:block flex-1 min-w-0 font-body-sm text-body-sm text-on-surface-variant" data-editor-testi-cambios=""></p>
+<button class="flex-1 md:flex-none inline-flex items-center justify-center h-12 px-space-lg rounded-lg border border-outline-variant text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors" data-accion="cancelar-testimonio" type="button">Cancelar</button>
+<button class="flex-1 md:flex-none inline-flex items-center justify-center gap-space-xs h-12 px-space-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md rounded-lg shadow-[0_4px_20px_-2px_rgba(24,60,72,0.1)] transition-all disabled:opacity-60 disabled:cursor-wait" data-guardar-testi="" type="submit"><span aria-hidden="true" class="material-symbols-outlined text-xl">check</span>Guardar</button>
+</div>
+</div>
+</form>
+</section>
+
+<!-- ======================= MI CUENTA ======================= -->
+<section aria-labelledby="titulo-cuenta" class="max-w-3xl mx-auto flex flex-col gap-space-lg" data-vista="cuenta" hidden="">
+<div>
+<h1 class="font-headline-md text-headline-md text-primary" id="titulo-cuenta">Mi cuenta</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Entraste como <strong class="text-primary break-all" data-usuario-email=""></strong></p>
+</div>
+<section aria-labelledby="h-clave" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-clave">Cambiar contraseña</h2>
+<form class="flex flex-col gap-space-md" id="form-clave" novalidate="">
+<input autocomplete="username" class="sr-only" data-usuario-email-campo="" name="username" readonly="" tabindex="-1" type="email"/>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="c-nueva">Nueva contraseña</label>
+<div class="relative">
+<input autocomplete="new-password" class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base pr-14" id="c-nueva" minlength="8" name="nueva" required="" type="password"/>
+<button aria-controls="c-nueva" aria-label="Mostrar contraseña" aria-pressed="false" class="absolute right-0 top-0 h-12 w-12 inline-flex items-center justify-center rounded-lg text-on-surface-variant hover:text-primary" data-ver-clave="c-nueva" type="button"><span aria-hidden="true" class="material-symbols-outlined">visibility</span></button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="c-nueva-ayuda">Mínimo 8 caracteres.</p>
+<p class="font-body-sm text-body-sm text-error" data-error-de="c-nueva" hidden="" id="c-nueva-error"></p>
+</div>
+<div class="flex flex-col gap-space-xs min-w-0 ">
+<label class="font-label-md text-label-md text-primary" for="c-confirmar">Repite la nueva contraseña</label>
+<div class="relative">
+<input autocomplete="new-password" class="w-full h-12 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#7b5829] aria-[invalid=true]:shadow-[0_0_0_2px_#ba1a1a] transition-all max-md:text-base pr-14" id="c-confirmar" minlength="8" name="confirmar" required="" type="password"/>
+<button aria-controls="c-confirmar" aria-label="Mostrar contraseña" aria-pressed="false" class="absolute right-0 top-0 h-12 w-12 inline-flex items-center justify-center rounded-lg text-on-surface-variant hover:text-primary" data-ver-clave="c-confirmar" type="button"><span aria-hidden="true" class="material-symbols-outlined">visibility</span></button>
+</div>
+<p class="font-body-sm text-body-sm text-error" data-error-de="c-confirmar" hidden="" id="c-confirmar-error"></p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-md">
+<button class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md rounded-lg transition-all disabled:opacity-60 disabled:cursor-wait max-sm:w-full" type="submit"><span aria-hidden="true" class="material-symbols-outlined text-xl">lock_reset</span>Guardar nueva contraseña</button>
+<p aria-live="polite" class="font-body-sm text-body-sm text-on-surface-variant" data-clave-estado=""></p>
+</div>
+</form>
+</section>
+<section aria-labelledby="h-ayuda" class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="h-ayuda">Cómo funciona</h2>
+<dl class="flex flex-col gap-space-md font-body-sm text-body-sm text-on-surface">
+<div><dt class="font-label-md text-label-md text-primary">Estados de una propiedad</dt><dd class="text-on-surface-variant mt-space-xs"><strong class="text-on-surface">Borrador</strong>: solo la ves tú, no aparece en la web. <strong class="text-on-surface">En venta</strong>: aparece en la web. <strong class="text-on-surface">Bajo contrato</strong> y <strong class="text-on-surface">Vendida</strong>: siguen en la web con esa etiqueta; las vendidas sirven como historial de tu trabajo.</dd></div>
+<div><dt class="font-label-md text-label-md text-primary">Fotos</dt><dd class="text-on-surface-variant mt-space-xs">Puedes subir hasta 40 por propiedad, directamente desde el teléfono. La primera es la portada; usa las flechas o “Hacer portada” para cambiar el orden. El panel las reduce solo para que la web cargue rápido. Si una foto de iPhone no se puede leer en la computadora, súbela desde el teléfono o conviértela a JPG.</dd></div>
+<div><dt class="font-label-md text-label-md text-primary">Destacadas</dt><dd class="text-on-surface-variant mt-space-xs">Las propiedades marcadas como destacadas se muestran primero en la página de inicio y en el catálogo.</dd></div>
+<div><dt class="font-label-md text-label-md text-primary">Testimonios</dt><dd class="text-on-surface-variant mt-space-xs">Publica solo reseñas reales y con permiso del cliente. Cuando publiques la primera, la web deja de mostrar los testimonios de ejemplo.</dd></div>
+<div><dt class="font-label-md text-label-md text-primary">¿Olvidaste tu contraseña?</dt><dd class="text-on-surface-variant mt-space-xs">Pide a quien administra tu sitio web que la restablezca.</dd></div>
+</dl>
+</section>
+<div class="flex flex-col sm:flex-row gap-space-sm">
+<a class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg rounded-lg border border-outline-variant text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors" href="index.html" rel="noopener" target="_blank"><span aria-hidden="true" class="material-symbols-outlined text-xl">open_in_new</span>Ver sitio</a>
+<button class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg rounded-lg border border-outline-variant text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors" data-accion="salir" type="button"><span aria-hidden="true" class="material-symbols-outlined text-xl">logout</span>Cerrar sesión</button>
+</div>
+</section>
+
+</main>
+</div>
+
+<!-- Diálogo de confirmación -->
+<dialog aria-describedby="dialogo-texto" aria-labelledby="dialogo-titulo" class="w-[calc(100%-2.5rem)] max-w-md rounded-xl p-0 bg-surface-container-lowest text-on-surface shadow-[0_12px_32px_-4px_rgba(24,60,72,0.25)]" id="dialogo">
+<form class="p-space-lg flex flex-col gap-space-md" method="dialog">
+<h2 class="font-headline-sm text-headline-sm text-primary" id="dialogo-titulo"></h2>
+<p class="font-body-md text-body-md text-on-surface-variant" id="dialogo-texto"></p>
+<div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-space-sm pt-space-xs">
+<button class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg rounded-lg border border-outline-variant text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors" data-dialogo-no="" type="submit" value="no">Cancelar</button>
+<button class="inline-flex items-center justify-center gap-space-xs h-12 px-space-lg rounded-lg bg-error text-on-error hover:opacity-90 font-label-md text-label-md transition-all data-[tono=normal]:bg-primary data-[tono=normal]:text-on-primary" data-dialogo-si="" type="submit" value="si">Aceptar</button>
+</div>
+</form>
+</dialog>
+
+<!-- Mensajes breves -->
+<div aria-live="polite" class="fixed z-[80] left-1/2 -translate-x-1/2 bottom-28 md:bottom-24 flex flex-col items-center gap-space-xs w-[calc(100%-2.5rem)] max-w-sm pointer-events-none" id="mensajes" role="status"></div>
+</body></html>
